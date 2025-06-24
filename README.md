@@ -23,7 +23,7 @@ A full-stack web application for managing an auto repair business. It allows adm
 | Frontend   | Angular 18       |
 | Backend    | Spring Boot 3.x  |
 | Language   | TypeScript / Java 17+ |
-| Database   | MySQL or H2      |
+| Database   | MySQL or postgres     |
 | Build Tools| Maven / Angular CLI |
 | Others     | Lombok, JPA, REST, RxJS |
 
