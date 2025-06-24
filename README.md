@@ -11,7 +11,7 @@ A full-stack web application for managing an auto repair business. It allows adm
 - Appointment scheduling and status tracking
 - Service selection for appointments
 - Payment processing and record keeping
-- Employee directory (mechanics, staff)
+- Invoice 
 - RESTful API integration between frontend and backend
 
 ---
