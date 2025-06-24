@@ -24,8 +24,8 @@ public class Vehicle {
     @Column(unique = true, nullable = false)
     private String licencePlate;
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "user_id")
+    private User user;
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 

@@ -1,15 +1,14 @@
 package com.dashboard_erp.backend.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -21,15 +20,21 @@ public class User {
     @GeneratedValue
     private Integer id;
     @Column(nullable = false)
-    @NotBlank(message = "User name is required")
-    private String userName;
+    @NotBlank(message = "First name is required")
+    private String firstName;
     @Column(nullable = false)
-    @NotBlank(message = "Phone number is required")
-    private int phoneNumber;
-    @Column(nullable = false, unique = true)
+    @NotBlank(message = "Last name")
+    private String lastName;
     @Email(message = "Email should be valid")
     private String email;
     @Column(nullable = false)
+    @NotBlank(message = "phone number is required")
+    private String phone;
+    @Column(nullable = false)
+    @NotBlank(message = "address is required")
+    private String address;
+    @Column(nullable = false)
     private String password;
-
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Vehicle> vehicles;
 }
