@@ -1,6 +1,6 @@
 # 🧰 Auto Mechanic Management System
 
-A full-stack web application for managing an auto repair business. It allows administrators to manage customers, vehicles, appointments, services, employees, and payments. Built with a Spring Boot backend and an Angular 18 frontend.
+A full-stack web application for managing an auto repair business. It allows administrators to manage customers, vehicles, appointments, services, employees, and payments. Built with a Spring Boot backend and an Angular 19 frontend.
 
 ---
 
@@ -20,7 +20,7 @@ A full-stack web application for managing an auto repair business. It allows adm
 
 | Layer      | Technology       |
 |------------|------------------|
-| Frontend   | Angular 18       |
+| Frontend   | Angular 19       |
 | Backend    | Spring Boot 3.x  |
 | Language   | TypeScript / Java 17+ |
 | Database   | MySQL or postgres     |
