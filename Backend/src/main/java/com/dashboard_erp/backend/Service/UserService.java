@@ -1,17 +1,26 @@
 package com.dashboard_erp.backend.Service;
 
+import com.dashboard_erp.backend.DTO.UserCredentialsDto;
+import com.dashboard_erp.backend.DTO.UserDto;
 import com.dashboard_erp.backend.Entity.Role;
 import com.dashboard_erp.backend.Entity.User;
+import com.dashboard_erp.backend.Mapper.UserMapper;
 import com.dashboard_erp.backend.Repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.nio.CharBuffer;
 import java.util.List;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
+    private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
+    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder,UserMapper userMapper) {
         this.userRepository= userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
     public void save(User user) {
         if(userRepository.existsByEmail(user.getEmail()) ) {
@@ -21,6 +30,7 @@ public class UserService {
         if (user.getRole() == Role.admin && userRepository.existsByRole(Role.admin)) {
             throw new RuntimeException("An admin user already exists");
         }
+        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(user.getPassword())));
         userRepository.save(user);
     }
     public List<User> getUsers() {
@@ -46,5 +56,12 @@ public class UserService {
 
 
         return userRepository.save(existingUser);
+    }
+    public UserDto login(UserCredentialsDto userCredentialsDto) {
+        User user=userRepository.findByEmail(userCredentialsDto.email()).orElseThrow(()->new RuntimeException("User Not Found"));
+        if(passwordEncoder.matches(CharBuffer.wrap(userCredentialsDto.password()),user.getPassword())) {
+            return userMapper.toUserDto(user);
+        }
+        throw new RuntimeException("Wrong password");
     }
 }
