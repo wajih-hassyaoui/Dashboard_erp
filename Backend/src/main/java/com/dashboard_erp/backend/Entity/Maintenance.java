@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Service {
+public class Maintenance {
     @Id
     @GeneratedValue
     private Integer id;

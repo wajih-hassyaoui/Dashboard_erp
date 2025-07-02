@@ -30,6 +30,7 @@ public class UserService {
         if (user.getRole() == Role.admin && userRepository.existsByRole(Role.admin)) {
             throw new RuntimeException("An admin user already exists");
         }
+        user.setRole(Role.customer);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(user.getPassword())));
         userRepository.save(user);
     }
