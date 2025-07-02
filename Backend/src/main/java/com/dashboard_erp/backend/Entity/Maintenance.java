@@ -23,6 +23,8 @@ public class Maintenance {
     private String name;
     private String description;
     private String price;
+    @Column(nullable = false)
+    private MaintenanceStatus status;
     @ManyToMany(mappedBy = "services")
     private List<Appointment> appointments;
 }
