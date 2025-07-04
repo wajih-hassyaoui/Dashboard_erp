@@ -1,5 +1,6 @@
 package com.dashboard_erp.backend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -23,8 +24,9 @@ public class Vehicle {
     @NotBlank(message = "licence plate is required")
     @Column(unique = true, nullable = false)
     private String licencePlate;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
